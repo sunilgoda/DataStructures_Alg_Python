@@ -36,7 +36,7 @@ Testcase2: sum of elements from 1st position to 5th position is 15
 def findSubarray(total,nums):
     curr_index = curr_sum = 0
     start = end = 0
-    while(curr_index < len(nums)):
+    while curr_index < len(nums):
         if curr_sum == total:
             return (start,end)
 
@@ -54,18 +54,23 @@ def findSubarray(total,nums):
 
         if curr_sum < total:
             curr_index += 1
-    if start == (len(nums) - 1):
-        print("No subarray found")
-        return (-1, -1)
+
+    print("No subarray found")
+    return (-1, -1)
 
 
 for i in range(int(input())):
-    crit = [int(x) for x in input().split()]
+    hint = "Enter the number of elements and sum to be found"
+    crit = [int(x) for x in input(hint).split()]
     print(crit)
+    while len(crit) < 2:
+        crit = [int(x) for x in input(hint).split()]
     total = crit[1]
 
     nums = [int(x) for x in input().split()]
     print("Total required:",total)
-    print("Nums:",nums)
-    print(findSubarray(total,nums))
+    print("Elements in array:",nums)
+    st_ind,end_ind = findSubarray(total,nums)
+    if st_ind > -1:
+        print("Subarray (start index,end index)",st_ind,end_ind)
 
